@@ -1,0 +1,58 @@
+<html>
+<head>
+<style type="text/css">
+rect {
+	stroke-width: 3px;
+}
+</style>
+
+<script src="d3.v3.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+<div id="vis"></div>
+<img src="assets/beard.svg" style="display:inline-block; vertical-align:top; fill: pink"></img>
+
+<script type="text/javascript">
+var b = 20;
+var total = 55;
+
+var data = [];
+for(var i = 0; i < b; i++){
+	data.push({"b": true});
+}
+for(var i = 0; i < (total - b); i++){
+	data.push({"b": false});
+}
+
+var linewidth = Math.ceil(Math.sqrt(total));
+var scale = d3.scale.linear()
+	.domain([0, linewidth])
+	.range([5, 500]);
+
+d3.select("#vis").style("display", "inline-block");
+
+var svg = d3.select("#vis").append("svg")
+	.attr("width", "600px")
+	.attr("height", "600px");
+
+var boxes = svg.selectAll("box").data(data);
+
+var boxesEnter = boxes.enter();
+boxesEnter.append("rect")
+	.attr("x", function(d,i){ return scale(Math.floor(i % linewidth)); })
+	.attr("y", function(d,i){ return scale(Math.floor(i / linewidth)); })
+	.attr("width", 50)
+	.attr("height", 50)
+	.style("fill", function(d){
+		if(d.b){
+			return "pink";
+		} else {
+			return "aliceblue";
+		}
+	})
+	.style("stroke", "black")
+	;
+</script>
+</body>
+</html>
