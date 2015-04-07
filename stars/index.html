@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Stars!!</title>
+
+<link rel="icon" href="assets/images/favicon.png" type="image/png">
+
+<meta name="description" content="TODO: insert description">
+
+<meta property="og:type" content="website">
+<meta property="og:image" content="TODO: insert facebook image">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body class="">
+  <div class="header">
+  	<div class="panel">
+  		<p>Stars</p>
+  		<input id="range-slider" type="range" min="0" max="119614" oninput="rangeSliderChanged(this.value, false);" onchange="rangeSliderChanged(this.value, true);" value="119614"></input>
+  		<input type="text" id="range-slider-value" value="loading...">
+  	</div>
+  	<div class="panel">
+	  	<p>Static renders</p>
+	  	<button id="static-svg">SVG</button>
+	  	<button id="static-canvas">Canvas</button>
+	  	<button id="static-virtual-dom">Custom DOM + Canvas</button>
+  	</div>
+  	<div class="panel" style="max-width: 500px">
+	  	<p>Animations</p>
+	  	<button id="anim-svg">SVG</button>
+	  	<button id="anim-canvas">Canvas (arc)</button>
+	  	<button id="anim-canvas-sprite">Canvas (image sprite)</button>
+	  	<button id="anim-canvas-canvas-sprite">Canvas (canvas sprite)</button>
+	  	<button id="anim-virtual-dom">Custom DOM</button>
+	  	<button id="anim-three">Three.JS</button>
+	  	<button id="anim-three-sprite">Three.JS (sprite)</button>
+	  	<button id="anim-three-particles">Three.JS (particles)</button>
+	  	<button id="anim-three-shaders">Three.JS (shaders)</button>
+	  	<button id="anim-three-3d">Three.JS (3D)</button>
+	  	<button id="anim-pixi">pixi.js (Graphics)</button>
+	  	<button id="anim-pixi-sprite">pixi.js (sprite)</button>
+	  	<!--<button id="anim-two">Two.js</button>-->
+  	</div>
+  </div>
+  <div class="wrapper">
+    <div class="container" id="container">
+    </div> <!-- /container -->
+  </div>
+
+  <div class="status-bar">
+  	<p id="status"></p>
+  	<p>avocado mode: <input type="checkbox" id="avocado-mode" onchange="window.changeAvocadoMode()"></input></p>
+  </div>
+
+    <script type="text/javascript" src="js/libs.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+  <script type="text/javascript">
+	  function rangeSliderChanged(newValue, redraw){
+	  	document.getElementById('range-slider-value').value = newValue;
+	  	if(redraw)
+		  	window.filterStars();
+	  }
+  </script>
+
+  </body>
+</html>
